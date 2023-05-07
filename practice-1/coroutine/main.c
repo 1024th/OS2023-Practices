@@ -1,6 +1,7 @@
 #include "coroutine.h"
 #include "utils.h"
 #include <stdio.h>
+#include "utils.h"
 
 cid_t getid_val = -1;
 
@@ -58,7 +59,7 @@ int main(){
     if(coroutine[0] != 10) fail("Nested coroutine ID not equal", __func__, __LINE__);
     if(co_getret(coroutine[0]) != 200) fail("Nested coroutine return value failed", __func__, __LINE__);
     // test nested and get status
-    for(int i = 0; i < 12; ++i) if(co_status(i) != FINISH) fail("Coroutine failed at status error", __func__, __LINE__);
+    for(int i = 0; i < 12; ++i) if(co_status(i) != FINISHED) fail("Coroutine failed at status error", __func__, __LINE__);
     // test yield and get status
     coroutine[0] = co_start(test_yield1);
     printf("Main: after co_start\n");

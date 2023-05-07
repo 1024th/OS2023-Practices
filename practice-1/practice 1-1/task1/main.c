@@ -29,8 +29,10 @@ int main(){
         int* thr = (int*) malloc(sizeof(int)); 
         *thr = i;
         // 1 Loc here: create thread and pass thr as parameter
+        pthread_create(&pid[i], NULL, thread1, thr);
     }
     for(i = 0; i < MAXTHREAD; ++i)
         // 1 Loc here: join thread
+        pthread_join(pid[i], NULL);
     return 0;
 }
