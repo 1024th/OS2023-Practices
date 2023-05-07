@@ -80,6 +80,9 @@ void* test_multithread_thread(void *ptr) {
         coroutine[i] = co_start(test_multithread_coroutine);
     }
     for (int i = 0; i < CNT; ++i) {
+        co_wait(coroutine[i]);
+    }
+    for (int i = 0; i < CNT; ++i) {
         assert(co_getret(coroutine[i]) == 1);
         assert(co_status(coroutine[i]) == FINISHED);
     }
@@ -127,6 +130,7 @@ int main(){
     // test nested creation
     coroutine[0] = co_start(nested_costart);
     if(coroutine[0] != 10) fail("Nested coroutine ID not equal", __func__, __LINE__);
+    co_wait(coroutine[0]);
     if(co_getret(coroutine[0]) != 200) fail("Nested coroutine return value failed", __func__, __LINE__);
     // test nested and get status
     for(int i = 0; i < 12; ++i) if(co_status(i) != FINISHED) fail("Coroutine failed at status error", __func__, __LINE__);
