@@ -1,0 +1,45 @@
+#!/bin/bash
+
+echo "## We enter the root directory of alice."
+
+echo "\$ cd /tmp/alice"
+cd /tmp/alice
+echo "\$ ls -lah"
+ls -lah
+
+echo "## /connect is a special file that allows you to connect to another user."
+echo "## Write the IP address and port of the other user to /connect, separated by a space."
+
+echo "\$ echo '127.0.0.1 5556' > /connect"
+echo '127.0.0.1 5556' > connect
+sleep 0.1
+
+echo "## Now alice have been connected to bob."
+echo "## Inside alice's root directory, there should be a file called bob."
+echo "\$ ls -lah"
+ls -lah
+
+echo "## Inside bob's root directory, there should be a file called alice."
+echo "\$ cd /tmp/bob"
+cd /tmp/bob
+echo "\$ ls -lah"
+ls -lah
+
+echo "## Alice can write to /bob to send a message to bob."
+echo "## Bob will receive the message in /alice."
+echo "\$ cd /tmp/alice"
+cd /tmp/alice
+echo "\$ echo 'Hello' > bob"
+echo 'Hello' > bob
+
+echo "## Sleep for 1 second..."
+sleep 1
+
+echo "## Now, let's see what bob has received"
+
+echo "\$ cd /tmp/bob"
+cd /tmp/bob
+echo "\$ ls -lah"
+ls -lah
+echo "\$ cat alice"
+cat alice

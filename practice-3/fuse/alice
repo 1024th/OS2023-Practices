@@ -1,0 +1,3 @@
+#!/bin/bash
+
+echo $'alice\n5555' | ./chatfs /tmp/alice -f -d -s -o allow_other -o default_permissions

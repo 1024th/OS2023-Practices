@@ -1,9 +1,9 @@
 .PHONY: all
 all:
 	gcc -o main main.c
-.PHONY run
+.PHONY: run
 run:
 	./main
 .PHONY: clean
 clean:
-	rm main
+	rm -f main test.txt
