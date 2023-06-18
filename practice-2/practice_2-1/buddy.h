@@ -1,6 +1,8 @@
 #ifndef OS_MM_H
 #define OS_MM_H
 #define MAX_ERRNO 4095
+#define MAX_RANK    16
+#define PAGE_SIZE 4096
 
 #define OK          0
 #define EINVAL      22  /* Invalid argument */    
